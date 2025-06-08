@@ -1,0 +1,10 @@
+{
+  "name": "nasa-picture-of-the-day",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "live-server .vscode/source/ --port 9002 --hostname 0.0.0.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
+  }
+}

@@ -9,12 +9,14 @@
     # pkgs.go
     # pkgs.python311
     # pkgs.python311Packages.pip
-    # pkgs.nodejs_20
+    pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
   ];
 
   # Sets environment variables in the workspace
-  env = {};
+  env = {
+    API_KEY = "FopdOdS3g1BZQxIzuVodKjE4imTOgUxRbSccZJuO";
+  };
   idx = {
     # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
     extensions = [
@@ -25,18 +27,12 @@
     previews = {
       enable = true;
       previews = {
-        # web = {
-        #   # Example: run "npm run dev" with PORT set to IDX's defined port for previews,
-        #   # and show it in IDX's web preview panel
-        #   command = ["npm" "run" "dev"];
-        #   manager = "web";
-        #   env = {
-        #     # Environment variables to set for your server
-        #     PORT = "$PORT";
-        #   };
-        # };
+        web = {
+          command = ["npm" "run" "dev" "--" "--port" "$PORT" "--hostname" "0.0.0.0"];
+          manager = "web";
+        };
       };
-    };
+    }; 
 
     # Workspace lifecycle hooks
     workspace = {
@@ -44,6 +40,9 @@
       onCreate = {
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
+        default.openFiles = [
+          "src/index.html"
+        ];
       };
       # Runs when the workspace is (re)started
       onStart = {
